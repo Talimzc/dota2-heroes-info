@@ -1,8 +1,10 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import listHeroes from "../../heroes";
 import HeroCard from "../HeroCard";
+
+// const { API_URL } = process.env;
 
 const ListHeroes = () => {
   const [heroes, setHeroes] = useState([]);
@@ -11,30 +13,9 @@ const ListHeroes = () => {
     getHeroes();
   }, []);
 
-  function compare(a, b) {
-    if (a.name_loc < b.name_loc) {
-      return -1;
-    }
-    if (a.name_loc > b.name_loc) {
-      return 1;
-    }
-    return 0;
-  }
-
   const getHeroes = async () => {
-    let mapped = listHeroes.map((heroe) => {
-      let slug = heroe?.name?.substring(14);
-      let obj = {
-        ...heroe,
-        slug: slug,
-        image: `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${slug}.png`,
-      };
-      return obj;
-    });
-
-    let ordered = mapped.sort(compare);
-    console.log(ordered);
-    setHeroes(ordered);
+    const { data } = await axios.get("https://dota2-api.vercel.app/heroes");
+    setHeroes(data);
   };
 
   return (

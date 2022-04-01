@@ -1,5 +1,4 @@
 import React from "react";
-import ListHeroes from "../ListHeroes";
 
 const HeroesWrapper = () => {
   return (

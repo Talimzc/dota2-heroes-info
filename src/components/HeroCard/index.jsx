@@ -17,6 +17,7 @@ const HeroCard = ({ hero }) => {
         <img
           src={`/assets/images/type_${hero?.primary_attr}.png`}
           className="w-[42px] h-[42px] p-[8px]"
+          alt="primary attr"
         />
         <div
           className="text-[18px] font-['Reaver-Bold'] text-white uppercase p-[8px] pl-0 tracking-[1px]"
